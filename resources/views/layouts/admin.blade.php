@@ -220,7 +220,7 @@
                         </button>
 
                         <!-- Profile dropdown -->
-                        <div class="ml-3 relative">
+                        <div class="ml-3 relative" wire:ignore>
                             <x-dropdown>
                                 <x-slot name="trigger">
                                     <button type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -237,6 +237,16 @@
                                     </form>
                                 </x-slot>
                             </x-dropdown>
+{{--                            <div x-data="{open: false, get isOpen() { return this.open },toggle() { this.open = ! this.open },}">--}}
+{{--                                <button @click="toggle()" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button"><span class="sr-only">Open user menu</span><img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""></button>--}}
+
+{{--                                <div x-show="isOpen">--}}
+{{--                                    <form method="POST" action="{{ route('logout') }}">--}}
+{{--                                                                            @csrf--}}
+{{--                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Sign out</a>--}}
+{{--                                            </form>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -251,5 +261,6 @@
             </main>
         </div>
     </div>
+    @livewireScripts
     </body>
 </html>

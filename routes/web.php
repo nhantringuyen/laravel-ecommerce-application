@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\CategoryList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+//Route::view('dashboard', 'dashboard')
+//    ->middleware(['auth', 'verified'])
+//    ->name('dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
 require __DIR__.'/auth.php';
+//Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], function () {
+//    Route::view('/', 'dashboard');
+//});
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'isAdmin']], function () {
+    Route::view('/', 'dashboard');
+    Route::get('/categories', CategoryList::class)->name('categories.index');
+});
